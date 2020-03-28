@@ -1,0 +1,1 @@
+export const CHANGE_TOKEN_MODEL = 'CHANGE_TOKEN_MODEL'  //修改token 模态框
