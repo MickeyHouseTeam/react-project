@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
+import {HashRouter,Route} from 'react-router-dom';
 import Slider from '../../components/Slider';
 import DropDown from '../../components/DropDown';
+import OrderList from '../../components/orders/OrderList';
 import style from './home.module.less';
 import { Layout} from 'antd';
 import {
@@ -58,7 +60,9 @@ class Home extends Component {
               background: '#fff'
             }}
           >
-            Content
+            <HashRouter>
+              <Route path='/admin/order/all' component={OrderList}></Route>
+            </HashRouter>
           </Content>
         </Layout>
       </Layout>

@@ -22,13 +22,13 @@ class DropDown extends Component {
   render() {
     return (
       <Dropdown overlay={this.renderMenu()}>
-        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}  style={
+        <span className="ant-dropdown-link" onClick={e => e.preventDefault()}  style={
         {
           marginRight:'50px'
         }
       }>
           <GithubFilled /> <DownOutlined />
-        </a>
+        </span>
       </Dropdown>
     );
   }

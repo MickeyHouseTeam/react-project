@@ -21,7 +21,7 @@ class Slider extends Component {
     })
   }
   handleJump = (e) =>{  //点击跳转
-    console.log(e)
+    // console.log(e)
     let {path} = e.item.props
     this.props.history.push(path)
   }
