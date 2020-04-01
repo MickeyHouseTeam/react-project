@@ -51,34 +51,14 @@ export default[
     icon:'order',
     children:[
       {
-        key:'5-5',
-        title:"全部订单",
-        path:'/admin/order/all'
-      },
-      {
-        key:'5-6',
-        title:"未付款",
-        path:'/admin/order/notPay'
-      },
-      {
         key:'5-1',
-        title:"待发货",
-        path:'/admin/order/wait'
+        title:"订单列表",
+        path:'/admin/order/list'
       },
       {
        key:'5-2',
-       title:"运输中",
-       path:'/admin/order/transport'
-      },
-      {
-        key:'5-3',
-        title:"已收货",
-        path:'/admin/order/Received'
-      },
-      {
-        key:'5-4',
-        title:"已完成",
-        path:'/admin/order/finished'
+       title:"订单添加",
+       path:'/admin/order/add'
       }
     ]
    },
