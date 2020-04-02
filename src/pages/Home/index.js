@@ -5,6 +5,7 @@ import DropDown from '../../components/DropDown';
 import OrderList from '../../components/orders/OrderList';
 import OrderAdd from '../../components/orders/OrderAdd';
 import OrderUpdate from '../../components/orders/OrderUpdate';
+import UserList from '../../components/users'
 import style from './home.module.less';
 import { Layout} from 'antd';
 import {
@@ -66,6 +67,7 @@ class Home extends Component {
               <Route path='/admin/order/list' component={OrderList}></Route>
               <Route path='/admin/order/add' component={OrderAdd}></Route>
               <Route path='/admin/order/update' component={OrderUpdate}></Route>
+              <Route path='/admin/userlist' component={UserList}></Route>
             </HashRouter>
           </Content>
         </Layout>
