@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Card,Table, Button,Pagination,message,Spin,Popconfirm,Select,Input} from 'antd';
 import orderApi from '@api/orderApi';
+import XLSX from 'xlsx';
 const { Option } = Select;
 const { Search } = Input;
 class OrderList extends Component {
@@ -82,7 +83,7 @@ class OrderList extends Component {
                 okText="确定"
                 cancelText="取消"
                 onConfirm={()=>{
-                  console.log(this.state.page)
+                  // console.log(this.state.page)
                   this.orderDelById(h._id)
                   
                 }}
@@ -96,29 +97,81 @@ class OrderList extends Component {
     ]
   }
   
-  getOrderList = (_id,page,pageSize,orderStatus,kw='') =>{  //获取商品列表
+  exportCurrent = () =>{  //导出当前页表格
+    // console.log(document.getElementsByTagName('table'))
+    let thead = document.getElementsByTagName('thead')[0]
+    let tbody = document.getElementsByTagName('tbody')[0]
+    // console.log(thead,tbody)
+    tbody.prepend(thead)
+    // console.log(tbody)
+    let wb = XLSX.utils.table_to_book(tbody, {sheet:"Sheet JS"});
+    // XLSX.writeFile(wb,'订单.xlsx');
+  }
+
+  exportAll = () =>{  //全部导出
+    let {columns} = this.state
+    let theadArr = [...columns]
+    theadArr.pop()
+    theadArr.shift()
+    let thead = theadArr.map((item)=>{
+      return item.title
+    })
+    console.log(thead)
+    orderApi.getOrderList()
+      .then((res)=>{
+        console.log(res)
+        let list = res.data.list
+        let tbody = list.map((item)=>{  //list的子项 是对象  将其全部转为数组
+          let arr = []
+          for (const key in item) {
+            arr.push(item[key])
+          }
+          return arr
+        })
+        let result = [thead,...tbody]
+        console.log(result)
+        let ws = XLSX.utils.aoa_to_sheet(result)
+        let wb = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(wb,ws)
+        XLSX.writeFile(wb,'订单.xlsx')
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+  }
+
+  getOrderList = (_id,page,pageSize,orderStatus,kw) =>{  //获取商品列表
     this.setState({spinning:true})
-    console.log(_id,page,pageSize,orderStatus,kw)
+    // console.log(_id,page,pageSize,orderStatus,kw)
     orderApi.getOrderList(_id,page,pageSize,orderStatus,kw).then((res)=>{
       // console.log(res)
-      let list = res.data.list.map((item,index)=>{
-        item.num = index+1
-        return item
-      })
-      console.log(list)
-      this.setState({dataSource:list,allCount:res.data.allCount,spinning:false})
+      if(res.data.list){
+        let list = res.data.list.map((item,index)=>{
+          item.num = index+1
+          return item
+        })
+
+        this.setState({dataSource:list,allCount:res.data.allCount,spinning:false})
+      }else{
+        this.setState({spinning:false})
+        message.error(res.data.msg)
+      }
+      // console.log(list)
     })
     .catch((error)=>{
       console.log(error)
-      // message.error(error)
+      this.setState({spinning:false})
+      message.error(error)
     })
+    
+
   }
   orderDelById = async (id) =>{  //删除
-    console.log(id)
+    // console.log(id)
     let {page,pageSize,kw} = this.state
-    console.log(page,kw)
+    // console.log(page,kw)
     let result = await orderApi.orderDelById(id)
-    console.log(result.data)
+    // console.log(result.data)
     if(result.data.code===200){
       message.success(result.data.msg)
       this.getOrderList(null,page,pageSize,kw)
@@ -136,12 +189,16 @@ class OrderList extends Component {
     return (
       <Card title='订单列表'>
         <Spin spinning={spinning}>
+          <div style={{'textAlign':'right'}}>
+            <Button size="small" style={{margin:'0 10px'}} onClick={this.exportCurrent}>导出当前页</Button>
+            <Button size="small" onClick={this.exportAll}>导出全部</Button>
+          </div>
           <div style={{margin:10,position:"relative"}}>
             <Select defaultValue='全部订单' size='small' 
-              style={{marginRight:10}} onChange={(e)=>{
-                console.log(e)
+              onChange={(e)=>{
+                // console.log(e)
                 this.setState({page:1,orderStatus:e},()=>{
-                  console.log(page,orderStatus)
+                  // console.log(page,orderStatus)
                   this.getOrderList(null,1,pageSize,e,kw)
                 })
               }}>
@@ -152,9 +209,11 @@ class OrderList extends Component {
               <Option value='已收货'>已收货</Option>
               <Option value='已完成'>已完成</Option>
             </Select>
-            <Button type='ghost' size='small' onClick={()=>{
-              this.props.history.push('/admin/order/add')
+            <Button type='ghost' size='small' style={{margin:'0 10px'}} 
+              onClick={()=>{
+                this.props.history.push('/admin/order/add')
             }}>添加订单</Button>
+            
             <Search
               placeholder="关键词搜索"
               size="small"
@@ -174,7 +233,7 @@ class OrderList extends Component {
             showTotal={() => `共 ${allCount} 条数据`}
             onChange = {(e)=>{
               this.setState({page:e},()=>{
-                console.log(e,page)
+                // console.log(e,page)
                 this.getOrderList(null,e,pageSize,orderStatus,kw)
               })
             }}

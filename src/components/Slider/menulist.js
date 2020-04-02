@@ -66,23 +66,24 @@ export default[
     key:'6',
     title:'数据统计',
     icon:'user',
-    children:[
-      {
-        key:'6-1',
-        title:"饼状图",
-        path:'/admin/echarts/pie'
-       },
-      {
-       key:'6-2',
-       title:"折线图",
-       path:'/admin/echarts/line'
-     },
-     {
-      key:'6-3',
-      title:"柱状图",
-      path:'/admin/echarts/histogram'
-    }
-    ]
+    path:'/admin/echarts'
+    // children:[
+    //   {
+    //     key:'6-1',
+    //     title:"饼状图",
+    //     path:'/admin/echarts/pie'
+    //    },
+    //   {
+    //    key:'6-2',
+    //    title:"折线图",
+    //    path:'/admin/echarts/line'
+    //  },
+    //  {
+    //   key:'6-3',
+    //   title:"柱状图",
+    //   path:'/admin/echarts/histogram'
+    // }
+    // ]
    },
   {
     key:'9',

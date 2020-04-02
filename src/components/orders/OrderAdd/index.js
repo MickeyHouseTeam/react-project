@@ -37,7 +37,7 @@ class OrderAdd extends Component {
           订单状态：
           <Select defaultValue={orderStatus} size='small' 
             style={{marginBottom:10,marginRight:10}} onChange={(e)=>{
-              console.log(e)
+              // console.log(e)
               this.setState({orderStatus:e})
             }}>
             <Option value='未付款'>未付款</Option>

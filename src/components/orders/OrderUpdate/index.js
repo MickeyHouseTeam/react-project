@@ -13,11 +13,11 @@ class OrderUpdate extends Component {
   }
   getOneById = (id) =>{  //根据传递的id查找数据
     this.setState({spinning:true})
-    console.log(id)
+    // console.log(id)
     orderApi.getOrderList(id)
       .then((res)=>{
         this.setState({spinning:false})
-        console.log(res)
+        // console.log(res)
         this.setState({...res.data.list})
       })
       .catch((error)=>{
@@ -31,7 +31,7 @@ class OrderUpdate extends Component {
     orderApi.orderUpdateById({...this.state})
       .then((res)=>{
         this.setState({spinning:false})
-        console.log(res)
+        // console.log(res)
         message.success(res.data.msg)
         // this.props.history.push('/admin/order/list')
         this.props.history.goBack()
@@ -44,10 +44,10 @@ class OrderUpdate extends Component {
     // console.log(this.props.location.state) //{_id}
     // id解构要 初始化  !!! 否则会报错 原因也许是因为异步
     let {_id=null} = this.props.location.state
-    console.log(_id)
+    // console.log(_id)
     this.getOneById(_id)
     this.setState({_id})
-    console.log(this.state._id)
+    // console.log(this.state._id)
   }
   render() {
     let {userId,prodId,orderStatus,spinning} = this.state
@@ -63,7 +63,7 @@ class OrderUpdate extends Component {
           订单状态：
             <Select defaultValue={orderStatus} size='small' 
               style={{marginBottom:10,marginRight:10}} onChange={(e)=>{
-                console.log(e)
+                // console.log(e)
                 this.setState({orderStatus:e})
               }}>
               <Option value='未付款'>未付款</Option>
