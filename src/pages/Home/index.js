@@ -3,6 +3,8 @@ import {HashRouter,Route} from 'react-router-dom';
 import Slider from '../../components/Slider';
 import DropDown from '../../components/DropDown';
 import OrderList from '../../components/orders/OrderList';
+import OrderAdd from '../../components/orders/OrderAdd';
+import OrderUpdate from '../../components/orders/OrderUpdate';
 import style from './home.module.less';
 import { Layout} from 'antd';
 import Goods from '@components/Goods'
@@ -64,6 +66,7 @@ class Home extends Component {
             }}
           >
             <HashRouter>
+<<<<<<< HEAD
               <Route path='/admin/order/all' component={OrderList}></Route>
               <Route path='/admin/goodslist' render={()=>{
                 return(
@@ -75,6 +78,11 @@ class Home extends Component {
                   <Increased></Increased>
                 )
               }}></Route>
+=======
+              <Route path='/admin/order/list' component={OrderList}></Route>
+              <Route path='/admin/order/add' component={OrderAdd}></Route>
+              <Route path='/admin/order/update' component={OrderUpdate}></Route>
+>>>>>>> 4dc0c4ede7faa2b8ec89c661a7a05800036a9577
             </HashRouter>
           </Content>
         </Layout>
