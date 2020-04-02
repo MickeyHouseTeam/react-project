@@ -5,6 +5,9 @@ import DropDown from '../../components/DropDown';
 import OrderList from '../../components/orders/OrderList';
 import style from './home.module.less';
 import { Layout} from 'antd';
+import Goods from '@components/Goods'
+import Increased from '@components/Increased'
+
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -62,6 +65,16 @@ class Home extends Component {
           >
             <HashRouter>
               <Route path='/admin/order/all' component={OrderList}></Route>
+              <Route path='/admin/goodslist' render={()=>{
+                return(
+                  <Goods></Goods>
+                )
+              }}></Route>
+              <Route path='/admin/goodsadd' render={()=>{
+                return(
+                  <Increased></Increased>
+                )
+              }}></Route>
             </HashRouter>
           </Content>
         </Layout>

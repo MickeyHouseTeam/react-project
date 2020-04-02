@@ -37,7 +37,6 @@ class Slider extends Component {
           onClick={this.handleJump}
         >
           {this.renderMenu(menulist)}
-
         </Menu>
       </div>
     );
