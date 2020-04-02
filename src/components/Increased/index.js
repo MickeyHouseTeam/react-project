@@ -3,18 +3,10 @@ import {withRouter} from 'react-router-dom'
 import {
   Form,
   Input,
-  Tooltip,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
   Button,
-  AutoComplete,
   Card,
 } from 'antd';
 import axios from 'axios'
-import { QuestionCircleOutlined } from '@ant-design/icons';
 // var list = ['名称','简介','图片','类型','现价','折扣价','上架时间']
  var list = [
    {'title':'名称','title1':'name'},

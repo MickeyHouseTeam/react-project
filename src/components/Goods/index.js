@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 
-import {Pagination,Card,message,Table,Tag,Button,Popconfirm} from 'antd'
+import {Card,Table} from 'antd'
 import axios from 'axios'
 
 const data = [

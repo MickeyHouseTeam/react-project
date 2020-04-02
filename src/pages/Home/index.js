@@ -66,8 +66,7 @@ class Home extends Component {
             }}
           >
             <HashRouter>
-<<<<<<< HEAD
-              <Route path='/admin/order/all' component={OrderList}></Route>
+           
               <Route path='/admin/goodslist' render={()=>{
                 return(
                   <Goods></Goods>
@@ -78,11 +77,9 @@ class Home extends Component {
                   <Increased></Increased>
                 )
               }}></Route>
-=======
               <Route path='/admin/order/list' component={OrderList}></Route>
               <Route path='/admin/order/add' component={OrderAdd}></Route>
               <Route path='/admin/order/update' component={OrderUpdate}></Route>
->>>>>>> 4dc0c4ede7faa2b8ec89c661a7a05800036a9577
             </HashRouter>
           </Content>
         </Layout>
