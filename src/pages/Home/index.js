@@ -8,6 +8,9 @@ import OrderUpdate from '@components/orders/OrderUpdate';
 import Echarts from '@components/echarts';
 import style from './home.module.less';
 import { Layout} from 'antd';
+import Goods from '@components/Goods'
+import Increased from '@components/Increased'
+
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -64,6 +67,17 @@ class Home extends Component {
             }}
           >
             <HashRouter>
+           
+              <Route path='/admin/goodslist' render={()=>{
+                return(
+                  <Goods></Goods>
+                )
+              }}></Route>
+              <Route path='/admin/goodsadd' render={()=>{
+                return(
+                  <Increased></Increased>
+                )
+              }}></Route>
               <Route path='/admin/order/list' component={OrderList}></Route>
               <Route path='/admin/order/add' component={OrderAdd}></Route>
               <Route path='/admin/order/update' component={OrderUpdate}></Route>
