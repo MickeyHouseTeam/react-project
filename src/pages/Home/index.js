@@ -6,6 +6,7 @@ import OrderList from '@components/orders/OrderList';
 import OrderAdd from '@components/orders/OrderAdd';
 import OrderUpdate from '@components/orders/OrderUpdate';
 import Echarts from '@components/echarts';
+import UserList from '../../components/users'
 import style from './home.module.less';
 import { Layout} from 'antd';
 import Goods from '@components/Goods'
@@ -82,6 +83,7 @@ class Home extends Component {
               <Route path='/admin/order/add' component={OrderAdd}></Route>
               <Route path='/admin/order/update' component={OrderUpdate}></Route>
               <Route path='/admin/echarts' component={Echarts}></Route>
+              <Route path='/admin/userlist' component={UserList}></Route>
             </HashRouter>
           </Content>
         </Layout>
